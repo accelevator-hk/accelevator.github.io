@@ -1,64 +1,521 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>网站更新中</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0a4c8c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>腾雲加速器 | 引领科创企业出海</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            /* 平滑滚动 */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #0a4c8c 0%, #e87c1e 100%);
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'PingFang SC', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(135deg, #0a4c8c 0%, #e87c1e 100%);
             min-height: 100vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+            padding: 0;
+            background-attachment: fixed;
+            /* 让背景固定，不随滚动而移动 */
+        }
+
+        /* 导航栏 */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            flex-wrap: wrap;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            display: block;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+        }
+
+        .logo-text-fallback {
+            display: none;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #fff, #ffe0b5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+            flex-wrap: wrap;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: opacity 0.2s;
+            opacity: 0.85;
+        }
+
+        .nav-links li a:hover {
+            opacity: 1;
+            text-decoration: underline;
+            text-underline-offset: 6px;
+        }
+
+        /* 主内容区 */
+        .section {
+            scroll-margin-top: 80px;
+            padding: 60px 5% 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* 首页 Section */
+        .hero {
+            text-align: center;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gear-icon {
+            font-size: 80px;
+            display: inline-block;
+            animation: spin 4s linear infinite;
+            filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, #ffddb0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero .subtitle {
+            font-size: 1.25rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+            max-width: 550px;
+            line-height: 1.5;
+        }
+
+        .date-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-top: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 介绍页面样式 */
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .page-header h2 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff, #ffddb0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 15px;
+        }
+
+        .intro-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #fff, #da9035);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .description-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            opacity: 0.95;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .info-panel {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 28px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: center;
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-panel:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .info-panel h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #fff, #da9035);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .info-panel p {
+            line-height: 1.65;
+            font-size: 0.98rem;
+            opacity: 0.9;
+            flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0;
         }
-        .container {
+
+        .highlight-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            margin-bottom: 8px;
+        }
+
+        .tech-tags {
+            margin-top: 20px;
             text-align: center;
-            padding: 2rem;
-            color: white;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+
+        /* 联系页面样式 */
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 32px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: center;
+            max-width: 500px;
+            margin: 0 auto;
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .contact-title {
+            font-size: 2rem;
             font-weight: 600;
+            margin-bottom: 16px;
+            color: #ffddb0;
         }
-        .message {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.95;
+
+        .contact-subtitle {
+            font-size: 1rem;
+            opacity: 0.8;
+            margin-bottom: 30px;
         }
-        .update-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+
+        .qrcode-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
         }
-        hr {
-            width: 50px;
-            margin: 2rem auto;
-            border: 1px solid rgba(255,255,255,0.3);
+
+        .qrcode-img {
+            max-width: 220px;
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.833);
+            padding: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
+
+        .contact-info {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .contact-info a {
+            color: #ffddb0;
+            text-decoration: none;
+        }
+
+        /* slogan 和 footer */
+        .slogan-text {
+            text-align: center;
+            padding: 20px 20px 0 20px;
+        }
+
+        .slogan-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #fff, #ffddb0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
         .footer {
-            font-size: 0.875rem;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.85rem;
             opacity: 0.7;
-            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-top: 20px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 800px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .hero h1,
+            .page-header h2 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .nav-links {
+                gap: 24px;
+            }
+
+            .logo-img {
+                height: 42px;
+            }
+
+            .contact-card {
+                padding: 35px 25px;
+            }
+
+            .slogan-title {
+                font-size: 1.2rem;
+            }
+
+            section {
+                scroll-margin-top: 120px;
+            }
+        }
+
+        /* 手机端专用样式 */
+        @media (max-width: 600px) {
+            .slogan-title {
+                font-size: 1rem;
+                padding: 0 16px;
+                line-height: 1.3;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="update-icon">🔄</div>
-        <h1>网站更新中</h1>
-        <div class="message">
-            感谢您访问我们的网站。<br>
-            我们正在对网站进行全面升级，敬请期待！
+
+    <!-- 导航栏 -->
+    <div class="navbar">
+        <div class="logo-area">
+            <img class="logo-img" src="logo1个_副本.png" alt="TenWings 腾雲加速器 Logo"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+            <div class="logo-text-fallback">腾雲加速器</div>
         </div>
-        <hr>
-        <div class="footer">
-            预计近期完成更新<br>
-            请稍后再来访问
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#about">介绍</a></li>
+            <li><a href="#contact">联系</a></li>
+        </ul>
+    </div>
+
+    <!-- ==================== 首页 Section ==================== -->
+    <section id="home" class="section hero">
+        <div class="gear-icon">⚙️</div>
+        <h1>网站焕新升级中</h1>
+        <div class="subtitle">
+            全新的界面，更好的体验。<br>
+            腾雲加速器即将以更好的姿态与您见面。
+        </div>
+        <div class="date-badge">
+            📅 预计 2026年5月中旬 精彩呈现
+        </div>
+    </section>
+
+    <!-- ==================== 介绍 Section ==================== -->
+    <section id="about" class="section">
+        <div class="page-header">
+            <h2>关于腾云加速器</h2>
+            <div class="en-title">TENWINGS ACCELERATOR</div>
+        </div>
+
+        <div class="intro-card">
+            <div class="section-title">加速器简介</div>
+            <div class="description-text">
+                腾云香港科创集群加速器于2025年10月在香港数码港正式启动。作为香港最大的内地科创企业出海加速平台，我们聚焦人工智能、机器人、生物科技、先进制造、新能源及新材料等前沿领域，致力"引领中国科创企业集群出海"，做企业全球化成长的长期护航者。
+            </div>
+            <div class="tech-tags">
+                <span class="highlight-tag">#人工智能</span>
+                <span class="highlight-tag">#机器人</span>
+                <span class="highlight-tag">#生物科技</span>
+                <span class="highlight-tag">#先进制造</span>
+                <span class="highlight-tag">#新能源</span>
+                <span class="highlight-tag">#新材料</span>
+            </div>
+        </div>
+
+        <div class="two-columns">
+            <div class="info-panel">
+                <h3>品牌定位</h3>
+                <p>中国科创企业的「出海兵工厂」与「价值倍增器」</p>
+            </div>
+            <div class="info-panel">
+                <h3>项目背景</h3>
+                <p>依托世纪金源集团强健的产业资本实力，及其在消费、文旅、健康、科技等领域的丰富资源，腾云加速器与香港数码港共建、共创、共营唯一非自营品牌授权科创空间 Smart
+                    Space，致力于为中国科创企业提供坚实的全球化资金支持与产业生态赋能。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 联系 Section ==================== -->
+    <section id="contact" class="section">
+        <div class="contact-card">
+            <div class="contact-title">关注我们</div>
+            <div class="contact-subtitle">扫描二维码关注公众号<br>获取最新资讯与出海洞察</div>
+
+            <div class="qrcode-container">
+                <img class="qrcode-img" src="qrcode.png" alt="微信公众号二维码"
+                    onerror="this.onerror=null; this.outerHTML='<div style=\'padding: 40px; background: rgba(255,255,255,0.2); border-radius: 16px;\'>⚠️ 二维码图片加载失败<br>请将公众号二维码图片命名为 qrcode.png 并上传</div>'">
+            </div>
+
+            <div class="qrcode-label">微信公众号</div>
+            <div class="qrcode-hint">微信扫一扫，关注我们</div>
+
+            <div class="contact-info">
+                <p>📧 邮箱：<a href="mailto:contact@accelevator.hk">office@accelevator.hk</a></p>
+                <p>📍 地址：香港数码港三座F区15层</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 底部 Slogan + Footer ==================== -->
+    <div class="slogan-text">
+        <div class="slogan-title">
+            腾云加速器，你的全球成功伙伴<br>
+            DRIVE YOUR GLOBAL SUCCESS
         </div>
     </div>
+
+    <div class="footer">
+        © 2026 腾雲加速器 | 引领中国科创企业集群出海
+    </div>
+
 </body>
+
 </html>
