@@ -214,6 +214,7 @@
             /* 两行之间的间距 */
             transition: transform 0.3s, background 0.3s;
             /* 添加过渡效果 */
+            cursor: pointer;
         }
 
         .date-badge:hover {
@@ -221,6 +222,16 @@
             /* 向上移动 5px */
             background: rgba(255, 255, 255, 0.25);
             /* 背景变亮 */
+        }
+
+        .official-link {
+            color: white;
+            text-decoration: none;
+        }
+
+        .official-link:hover {
+            color: white;
+            text-decoration: none;
         }
 
         /* 介绍页面样式 */
@@ -581,10 +592,13 @@
         <div class="subtitle-en">Brand new interface, better experience.<br>TenWings Accelerator will meet you soon with
             a
             fresh new look.</div>
-        <div class="date-badge">
-            <span>📅 預計 2026年5月中旬 精彩呈現</span>
-            <span class="date-badge-eng">Expected to launch in mid-May 2026</span>
-        </div>
+        <a href="https://www.startmeup.hk/resources/tenwings-accelevator-company-limited/" target="_blank"
+            class="official-link" style="text-decoration: none;">
+            <div class="date-badge">
+                <span>更多详情，请访问香港投资推广署官方介绍页</span>
+                <span class="date-badge-eng">Click to see our official profile on StartmeupHK</span>
+            </div>
+        </a>
     </section>
 
     <!-- ==================== 介绍 Section ==================== -->
